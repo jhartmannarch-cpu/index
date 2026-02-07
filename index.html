@@ -9,28 +9,34 @@
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#f3f4f6;
+  --bg:#f5f5f0;
   --card:#ffffff;
   --accent:#7a1c1c;
   --accent-light:#9b3333;
+  --accent-dark:#5a1414;
   --text:#1f2937;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --radius:10px;
-  --shadow:0 4px 16px rgba(0,0,0,.08);
+  --radius:12px;
+  --shadow:0 2px 12px rgba(0,0,0,.06);
+  --shadow-hover:0 8px 30px rgba(0,0,0,.12);
+  --success:#059669;
+  --warning:#d97706;
+  --danger:#dc2626;
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
 }
 
 body{
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  font-family:var(--font);
   background:var(--bg);
   color:var(--text);
-  line-height:1.5;
+  line-height:1.6;
 }
 
 /* ===== HERO ===== */
 #hero{
   position:relative;
-  height:460px;
+  height:500px;
   background:#111;
   overflow:hidden;
 }
@@ -47,126 +53,156 @@ body{
 #hero .overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.65) 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.6) 70%,rgba(0,0,0,.85) 100%);
 }
 #hero .hero-content{
   position:absolute;
-  bottom:50px;
-  left:40px;
-  right:40px;
+  bottom:60px;
+  left:0;right:0;
+  text-align:center;
   color:#fff;
+  padding:0 24px;
 }
 #hero h1{
-  font-size:clamp(2rem,5vw,3.2rem);
-  font-weight:700;
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  font-weight:800;
   letter-spacing:-.02em;
   line-height:1.1;
+  text-shadow:0 2px 20px rgba(0,0,0,.3);
 }
 #hero p{
-  margin-top:10px;
+  margin:12px auto 0;
   font-size:1.1rem;
-  opacity:.85;
-  max-width:500px;
+  opacity:.9;
+  max-width:540px;
+  line-height:1.5;
 }
 
 /* ===== HEADER / NAV ===== */
 header{
-  background:#fff;
-  padding:16px 32px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:0 32px;
   border-bottom:1px solid var(--border);
   display:flex;
   justify-content:space-between;
   align-items:center;
   position:sticky;
   top:0;
-  z-index:5;
+  z-index:50;
+  height:60px;
 }
 header .brand{
-  font-size:1.15rem;
-  font-weight:700;
+  font-size:1.2rem;
+  font-weight:800;
   color:var(--accent);
   letter-spacing:.02em;
 }
 header nav{
   display:flex;
-  gap:8px;
+  gap:4px;
   align-items:center;
   flex-wrap:wrap;
 }
 header nav a{
   text-decoration:none;
   color:var(--muted);
-  font-size:.875rem;
+  font-size:.85rem;
   font-weight:500;
-  padding:6px 12px;
-  border-radius:6px;
-  transition:color .2s,background .2s;
+  padding:8px 14px;
+  border-radius:8px;
+  transition:all .2s;
 }
 header nav a:hover{
   color:var(--accent);
   background:rgba(122,28,28,.06);
 }
+
+/* ===== BUTTONS ===== */
 .btn{
-  display:inline-block;
-  padding:8px 16px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 20px;
   border:none;
-  border-radius:6px;
+  border-radius:8px;
   background:var(--accent);
   color:#fff;
   font-size:.875rem;
-  font-weight:500;
+  font-weight:600;
   cursor:pointer;
-  transition:background .2s;
+  transition:all .2s;
+  font-family:var(--font);
+  text-decoration:none;
 }
-.btn:hover{background:var(--accent-light)}
+.btn:hover{background:var(--accent-light);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
 .btn-outline{
   background:transparent;
   color:var(--accent);
-  border:1px solid var(--accent);
+  border:1.5px solid var(--accent);
 }
 .btn-outline:hover{
   background:var(--accent);
   color:#fff;
 }
-.btn-sm{padding:6px 12px;font-size:.8rem}
+.btn-sm{padding:7px 14px;font-size:.8rem}
+.btn-danger{background:var(--danger)}
+.btn-danger:hover{background:#b91c1c}
+.btn-success{background:var(--success)}
+.btn-success:hover{background:#047857}
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  padding:8px 12px;
+}
+.btn-ghost:hover{color:var(--text);background:rgba(0,0,0,.04)}
 
 /* ===== FILTER BAR ===== */
 #filterBar{
-  padding:16px 32px;
+  padding:14px 32px;
   background:#fff;
   border-bottom:1px solid var(--border);
   display:flex;
-  gap:10px;
+  gap:8px;
   flex-wrap:wrap;
   align-items:center;
 }
-#filterBar .filter-btn{
-  padding:6px 16px;
-  border:1px solid var(--border);
-  border-radius:20px;
+.filter-btn{
+  padding:7px 18px;
+  border:1.5px solid var(--border);
+  border-radius:24px;
   background:#fff;
   color:var(--muted);
   font-size:.85rem;
+  font-weight:500;
   cursor:pointer;
   transition:all .2s;
+  font-family:var(--font);
 }
-#filterBar .filter-btn.active,
-#filterBar .filter-btn:hover{
+.filter-btn.active,
+.filter-btn:hover{
   background:var(--accent);
   color:#fff;
   border-color:var(--accent);
 }
 #searchBox{
   margin-left:auto;
-  padding:8px 14px;
-  border:1px solid var(--border);
-  border-radius:6px;
+  padding:9px 16px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
   font-size:.875rem;
-  width:200px;
+  width:220px;
   outline:none;
-  transition:border-color .2s;
+  transition:border-color .2s,box-shadow .2s;
+  font-family:var(--font);
+  background:#fff;
 }
-#searchBox:focus{border-color:var(--accent)}
+#searchBox:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(122,28,28,.08);
+}
 
 /* ===== CATALOG ===== */
 #catalog{
@@ -175,10 +211,10 @@ header nav a:hover{
   margin:0 auto;
 }
 .section-title{
-  font-size:1.4rem;
+  font-size:1.3rem;
   font-weight:700;
-  margin:40px 0 20px;
-  padding-bottom:8px;
+  margin:48px 0 20px;
+  padding-bottom:12px;
   border-bottom:2px solid var(--border);
   display:flex;
   align-items:center;
@@ -186,18 +222,18 @@ header nav a:hover{
 }
 .section-title:first-child{margin-top:0}
 .section-count{
-  font-size:.8rem;
-  font-weight:500;
+  font-size:.75rem;
+  font-weight:600;
   background:var(--accent);
   color:#fff;
-  padding:2px 8px;
-  border-radius:10px;
+  padding:3px 10px;
+  border-radius:12px;
 }
 
 /* ===== GRID ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:24px;
 }
 .card{
@@ -206,31 +242,31 @@ header nav a:hover{
   overflow:hidden;
   box-shadow:var(--shadow);
   cursor:pointer;
-  transition:transform .25s ease,box-shadow .25s ease;
+  transition:transform .3s ease,box-shadow .3s ease;
   position:relative;
 }
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-hover);
 }
 .card .thumb{
   width:100%;
-  height:200px;
+  height:220px;
   object-fit:cover;
   background:#e5e7eb;
   display:block;
 }
 .card .placeholder{
   width:100%;
-  height:200px;
-  background:linear-gradient(135deg,#e5e7eb 0%,#d1d5db 100%);
+  height:220px;
+  background:linear-gradient(135deg,#ede9e3 0%,#ddd8d0 100%);
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#9ca3af;
+  color:#b0a89e;
   font-size:2rem;
 }
-.card-body{padding:14px}
+.card-body{padding:16px}
 .card-body .code{
   font-weight:700;
   color:var(--accent);
@@ -239,165 +275,407 @@ header nav a:hover{
 .card-body .size{
   font-size:.82rem;
   color:var(--muted);
-  margin-top:2px;
+  margin-top:3px;
 }
 .card-body .desc{
-  font-size:.8rem;
+  font-size:.82rem;
   color:var(--muted);
   margin-top:6px;
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
   overflow:hidden;
+  line-height:1.4;
+}
+.card-body .price-tag{
+  margin-top:10px;
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--accent);
+}
+.card-body .price-tag.no-price{
+  font-size:.85rem;
+  color:var(--muted);
+  font-weight:500;
 }
 
-/* SOLD */
-.card.sold{opacity:.5;pointer-events:auto}
-.card.sold::after{
-  content:"SOLD";
+/* SOLD BADGE */
+.card .sold-badge{
   position:absolute;
-  top:16px;
-  right:-36px;
+  top:12px;
+  left:12px;
   background:var(--accent);
   color:#fff;
-  padding:4px 46px;
-  transform:rotate(45deg);
-  font-size:.75rem;
+  padding:4px 12px;
+  border-radius:6px;
+  font-size:.72rem;
   font-weight:700;
-  letter-spacing:.05em;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  z-index:2;
 }
+.card.sold{opacity:.65}
+.card.sold:hover{opacity:.8}
 
 /* ===== DETAIL MODAL ===== */
 #detail{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:20;
+  background:rgba(0,0,0,.65);
+  z-index:100;
   overflow-y:auto;
   padding:40px 20px;
-  backdrop-filter:blur(4px);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
 }
 #detailBox{
   background:#fff;
-  max-width:800px;
+  max-width:900px;
   margin:0 auto;
-  border-radius:12px;
+  border-radius:16px;
   overflow:hidden;
   animation:slideUp .3s ease;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
 }
 @keyframes slideUp{
-  from{opacity:0;transform:translateY(20px)}
+  from{opacity:0;transform:translateY(30px)}
   to{opacity:1;transform:translateY(0)}
 }
-#detailBox .gallery{
+
+/* Gallery */
+.gallery{
   position:relative;
   background:#111;
-  height:420px;
+  height:480px;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
 }
-#detailBox .gallery img{
+.gallery img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
-#detailBox .gallery .no-image{
+.gallery .no-image{
   color:#666;
-  font-size:1rem;
+  font-size:.95rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
 }
 .gallery-nav{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.9);
   border:none;
-  width:40px;
-  height:40px;
+  width:44px;
+  height:44px;
   border-radius:50%;
-  font-size:1.2rem;
+  font-size:1.3rem;
   cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:background .2s;
+  transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
-.gallery-nav:hover{background:#fff}
-.gallery-nav.prev{left:12px}
-.gallery-nav.next{right:12px}
+.gallery-nav:hover{background:#fff;transform:translateY(-50%) scale(1.05)}
+.gallery-nav.prev{left:16px}
+.gallery-nav.next{right:16px}
 .gallery-counter{
   position:absolute;
-  bottom:12px;
-  right:16px;
+  bottom:16px;
+  right:20px;
   background:rgba(0,0,0,.6);
   color:#fff;
-  padding:4px 10px;
+  padding:5px 12px;
   border-radius:12px;
   font-size:.75rem;
+  font-weight:500;
 }
-#detailBox .info{padding:24px}
-#detailBox .info h2{
-  font-size:1.3rem;
+
+/* Detail Info */
+.detail-info{
+  padding:28px 32px 32px;
+}
+.detail-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.detail-header h2{
+  font-size:1.5rem;
+  color:var(--text);
+  font-weight:700;
+}
+.detail-price{
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--accent);
+}
+.detail-price.no-price{
+  font-size:1rem;
+  color:var(--muted);
+  font-weight:500;
+}
+.detail-meta{
+  display:flex;
+  gap:16px;
+  margin-top:8px;
+  flex-wrap:wrap;
+}
+.detail-meta .tag{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  background:#f3f4f6;
+  padding:5px 12px;
+  border-radius:6px;
+  font-size:.82rem;
+  color:var(--muted);
+  font-weight:500;
+}
+.detail-description{
+  margin-top:16px;
+  font-size:.95rem;
+  line-height:1.7;
+  color:var(--text);
+}
+.detail-actions{
+  display:flex;
+  gap:10px;
+  margin-top:24px;
+  flex-wrap:wrap;
+}
+
+/* ===== ADMIN PANEL ===== */
+.admin-panel{
+  display:none;
+  margin-top:28px;
+  padding:24px;
+  background:#fef7f7;
+  border:2px solid #f5c6c6;
+  border-radius:12px;
+}
+.admin-panel h3{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--accent);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.admin-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.admin-field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.admin-field.full{grid-column:1/-1}
+.admin-field label{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.admin-field input,
+.admin-field textarea,
+.admin-field select{
+  padding:10px 14px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  font-size:.9rem;
+  font-family:var(--font);
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  background:#fff;
+}
+.admin-field input:focus,
+.admin-field textarea:focus,
+.admin-field select:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(122,28,28,.08);
+}
+.admin-field textarea{
+  resize:vertical;
+  min-height:80px;
+}
+.admin-image-section{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #f0d0d0;
+}
+.admin-image-section h4{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+.upload-area{
+  border:2px dashed #d1c0c0;
+  border-radius:10px;
+  padding:24px;
+  text-align:center;
+  cursor:pointer;
+  transition:all .2s;
+  background:#fff;
+  position:relative;
+}
+.upload-area:hover{
+  border-color:var(--accent);
+  background:#fef7f7;
+}
+.upload-area input[type="file"]{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  cursor:pointer;
+}
+.upload-area .upload-text{
+  color:var(--muted);
+  font-size:.85rem;
+}
+.upload-area .upload-icon{
+  font-size:1.8rem;
   color:var(--accent);
   margin-bottom:4px;
 }
-#detailBox .info .meta{
-  font-size:.9rem;
-  color:var(--muted);
-  margin-bottom:12px;
+.image-thumbs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
 }
-#detailBox .info .description{
-  font-size:.95rem;
-  line-height:1.6;
+.image-thumb{
+  position:relative;
+  width:80px;
+  height:80px;
+  border-radius:8px;
+  overflow:hidden;
+  border:2px solid var(--border);
 }
-#detailBox .info .actions{
+.image-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.image-thumb .remove-img{
+  position:absolute;
+  top:2px;
+  right:2px;
+  width:22px;
+  height:22px;
+  background:rgba(220,38,38,.9);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  font-size:.7rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity .2s;
+}
+.image-thumb:hover .remove-img{opacity:1}
+.admin-btn-row{
   display:flex;
   gap:10px;
   margin-top:20px;
+  flex-wrap:wrap;
+}
+.admin-status-bar{
+  position:fixed;
+  top:60px;
+  left:0;right:0;
+  background:var(--accent);
+  color:#fff;
+  text-align:center;
+  padding:8px 16px;
+  font-size:.85rem;
+  font-weight:600;
+  z-index:49;
+  display:none;
+}
+.admin-status-bar.active{display:block}
+
+/* Save indicator */
+.save-indicator{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:#065f46;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:10px;
+  font-size:.9rem;
+  font-weight:600;
+  z-index:200;
+  transition:transform .3s ease;
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.save-indicator.show{
+  transform:translateX(-50%) translateY(0);
 }
 
-/* ADMIN */
-#adminPanel{
-  display:none;
-  margin-top:20px;
-  padding:16px;
-  border:2px dashed var(--accent);
-  border-radius:8px;
-  background:rgba(122,28,28,.03);
+/* Loading spinner */
+.spinner{
+  display:inline-block;
+  width:18px;
+  height:18px;
+  border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .6s linear infinite;
 }
-#adminPanel strong{color:var(--accent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.loading-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+  backdrop-filter:blur(4px);
+}
+.loading-overlay .loading-content{
+  text-align:center;
+  color:var(--accent);
+}
+.loading-overlay .loading-spinner{
+  width:40px;
+  height:40px;
+  border:3px solid #f5c6c6;
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+  margin:0 auto 12px;
+}
 
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
-  padding:40px 20px;
+  padding:48px 24px;
   color:var(--muted);
   font-size:.85rem;
   border-top:1px solid var(--border);
-  margin-top:60px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  #hero{height:320px}
-  #hero .hero-content{bottom:30px;left:24px;right:24px}
-  header{padding:12px 20px}
-  #filterBar{padding:12px 20px}
-  #catalog{padding:20px}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-  .card .thumb,.card .placeholder{height:160px}
-  #detailBox .gallery{height:280px}
-  #detailBox .info{padding:20px}
-  #searchBox{width:140px}
-}
-@media(max-width:480px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-  .card .thumb,.card .placeholder{height:140px}
-  .card-body{padding:10px}
-  .card-body .desc{display:none}
-  #hero{height:260px}
-  #detail{padding:20px 10px}
+  margin-top:80px;
+  background:#fff;
 }
 
 /* ===== SCROLL-TO-TOP ===== */
@@ -405,8 +683,8 @@ footer{
   position:fixed;
   bottom:24px;
   right:24px;
-  width:44px;
-  height:44px;
+  width:48px;
+  height:48px;
   border-radius:50%;
   background:var(--accent);
   color:#fff;
@@ -416,14 +694,115 @@ footer{
   display:none;
   align-items:center;
   justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
   z-index:15;
-  transition:opacity .3s;
+  transition:all .3s;
 }
-#scrollTop:hover{background:var(--accent-light)}
+#scrollTop:hover{background:var(--accent-light);transform:translateY(-2px)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  #hero{height:340px}
+  #hero .hero-content{bottom:36px}
+  header{padding:0 20px}
+  #filterBar{padding:12px 20px}
+  #catalog{padding:20px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .card .thumb,.card .placeholder{height:180px}
+  .gallery{height:320px}
+  .detail-info{padding:20px 24px 24px}
+  #searchBox{width:160px}
+  .admin-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .card .thumb,.card .placeholder{height:150px}
+  .card-body{padding:12px}
+  .card-body .desc{display:none}
+  #hero{height:280px}
+  #detail{padding:16px 10px}
+  header nav a{display:none}
+  .detail-header{flex-direction:column}
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+}
+.empty-state svg{
+  margin-bottom:12px;
+  opacity:.5;
+}
+
+/* ===== ADMIN LOGIN MODAL ===== */
+#adminLoginModal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:150;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(6px);
+}
+#adminLoginModal.active{display:flex}
+.login-box{
+  background:#fff;
+  border-radius:16px;
+  padding:36px;
+  width:100%;
+  max-width:380px;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  animation:slideUp .3s ease;
+}
+.login-box h3{
+  font-size:1.2rem;
+  font-weight:700;
+  color:var(--accent);
+  margin-bottom:4px;
+}
+.login-box p{
+  color:var(--muted);
+  font-size:.85rem;
+  margin-bottom:20px;
+}
+.login-box input{
+  width:100%;
+  padding:12px 16px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  font-size:.95rem;
+  font-family:var(--font);
+  outline:none;
+  margin-bottom:16px;
+}
+.login-box input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(122,28,28,.08);
+}
+.login-box .login-error{
+  color:var(--danger);
+  font-size:.82rem;
+  margin-bottom:12px;
+  display:none;
+}
+.login-box .btn-row{
+  display:flex;
+  gap:10px;
+}
 </style>
 </head>
 <body>
+
+<!-- ===== LOADING OVERLAY ===== -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-content">
+    <div class="loading-spinner"></div>
+    <div>Loading catalog...</div>
+  </div>
+</div>
 
 <!-- ===== HERO ===== -->
 <div id="hero">
@@ -433,7 +812,7 @@ footer{
   <div class="overlay"></div>
   <div class="hero-content">
     <h1>VintaRugs</h1>
-    <p>Handpicked Oriental &amp; Gabbeh rugs — each piece unique, full of history and character.</p>
+    <p>Handpicked Oriental &amp; Gabbeh rugs &mdash; each piece unique, full of history and character.</p>
   </div>
 </div>
 
@@ -445,13 +824,19 @@ footer{
     <a href="#stapel-2">Stapel 2</a>
     <a href="#gabbeh">Gabbeh</a>
     <a href="#vk">VK</a>
-    <button class="btn btn-sm btn-outline" onclick="adminLogin()">Admin</button>
+    <button class="btn btn-sm btn-outline" id="adminBtn" onclick="showAdminLogin()">Admin</button>
   </nav>
 </header>
 
+<!-- Admin Status Bar -->
+<div class="admin-status-bar" id="adminStatusBar">
+  Admin Mode Active &mdash; Click any product to edit
+  <button class="btn btn-sm" style="background:rgba(255,255,255,.2);margin-left:12px" onclick="logoutAdmin()">Logout</button>
+</div>
+
 <!-- ===== FILTER BAR ===== -->
 <div id="filterBar">
-  <button class="filter-btn active" data-filter="all">All (53)</button>
+  <button class="filter-btn active" data-filter="all" id="filterAll">All</button>
   <button class="filter-btn" data-filter="Stapel 1">Stapel 1</button>
   <button class="filter-btn" data-filter="Stapel 2">Stapel 2</button>
   <button class="filter-btn" data-filter="Gabbeh">Gabbeh</button>
@@ -467,29 +852,123 @@ footer{
   <div id="detailBox">
     <div class="gallery">
       <img id="detailImg" alt="Rug detail">
-      <span class="no-image" id="noImage">No images uploaded yet</span>
+      <span class="no-image" id="noImage">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+        No images uploaded yet
+      </span>
       <button class="gallery-nav prev" onclick="prevImg()">&#8249;</button>
       <button class="gallery-nav next" onclick="nextImg()">&#8250;</button>
       <span class="gallery-counter" id="imgCount"></span>
     </div>
-    <div class="info">
-      <h2 id="detailCode"></h2>
-      <div class="meta" id="detailSize"></div>
-      <div class="description" id="detailDesc"></div>
-      <div class="actions">
+    <div class="detail-info">
+      <div class="detail-header">
+        <div>
+          <h2 id="detailCode"></h2>
+          <div class="detail-meta">
+            <span class="tag" id="detailGroup">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 002-2V8a2 2 0 00-2-2h-7.93a2 2 0 01-1.66-.9l-.82-1.2A2 2 0 007.93 3H4a2 2 0 00-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+              <span id="detailGroupText"></span>
+            </span>
+            <span class="tag" id="detailSizeTag">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+              <span id="detailSizeText"></span>
+            </span>
+          </div>
+        </div>
+        <div id="detailPriceDisplay" class="detail-price"></div>
+      </div>
+      <div class="detail-description" id="detailDesc"></div>
+      <div class="detail-actions">
         <button class="btn btn-outline" onclick="closeDetail()">Close</button>
       </div>
 
-      <div id="adminPanel">
-        <strong>Admin Controls</strong><br><br>
-        <label>Upload images:</label><br>
-        <input type="file" multiple accept="image/*" onchange="uploadImages(event)"><br><br>
-        <button class="btn btn-sm" onclick="toggleSold()">Toggle SOLD</button>
-        <button class="btn btn-sm btn-outline" onclick="deleteImages()" style="margin-left:8px">Clear Images</button>
+      <!-- Admin Panel -->
+      <div class="admin-panel" id="adminPanel">
+        <h3>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Edit Product
+        </h3>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Product Code</label>
+            <input type="text" id="editCode" readonly style="background:#f3f4f6;cursor:not-allowed">
+          </div>
+          <div class="admin-field">
+            <label>Category</label>
+            <select id="editGroup">
+              <option value="Stapel 1">Stapel 1</option>
+              <option value="Stapel 2">Stapel 2</option>
+              <option value="Gabbeh">Gabbeh</option>
+              <option value="VK">VK</option>
+            </select>
+          </div>
+          <div class="admin-field">
+            <label>Width (m)</label>
+            <input type="number" id="editWidth" step="0.01" min="0">
+          </div>
+          <div class="admin-field">
+            <label>Height (m)</label>
+            <input type="number" id="editHeight" step="0.01" min="0">
+          </div>
+          <div class="admin-field">
+            <label>Price (EUR)</label>
+            <input type="number" id="editPrice" step="0.01" min="0" placeholder="0.00">
+          </div>
+          <div class="admin-field">
+            <label>Status</label>
+            <select id="editSold">
+              <option value="false">Active</option>
+              <option value="true">Sold</option>
+            </select>
+          </div>
+          <div class="admin-field full">
+            <label>Description</label>
+            <textarea id="editDesc" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="admin-image-section">
+          <h4>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+            Product Images
+          </h4>
+          <div class="upload-area" id="uploadArea">
+            <input type="file" multiple accept="image/*" id="imageInput" onchange="handleImageUpload(event)">
+            <div class="upload-icon">+</div>
+            <div class="upload-text">Click or drag images here to upload</div>
+          </div>
+          <div class="image-thumbs" id="imageThumbs"></div>
+        </div>
+
+        <div class="admin-btn-row">
+          <button class="btn btn-success" onclick="saveProduct()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Changes
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="clearAllImages()">Clear All Images</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ===== ADMIN LOGIN MODAL ===== -->
+<div id="adminLoginModal" onclick="if(event.target===this)closeAdminLogin()">
+  <div class="login-box">
+    <h3>Admin Login</h3>
+    <p>Enter admin password to manage products.</p>
+    <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+    <input type="password" id="adminPassword" placeholder="Password" onkeydown="if(event.key==='Enter')doAdminLogin()">
+    <div class="btn-row">
+      <button class="btn" onclick="doAdminLogin()">Login</button>
+      <button class="btn btn-outline" onclick="closeAdminLogin()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SAVE INDICATOR ===== -->
+<div class="save-indicator" id="saveIndicator">Changes saved successfully</div>
 
 <!-- ===== SCROLL TO TOP ===== -->
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
@@ -500,322 +979,492 @@ footer{
 </footer>
 
 <script>
-/* ================= CARPET DATA ================= */
-const carpets=[
-  {c:"00_988",g:"Stapel 1",w:0.85,h:0.89,d:"Geometric medallion, dense field, classic red\u2013blue palette"},
-  {c:"01_978",g:"Stapel 1",w:0.75,h:0.81,d:"Fine floral pattern, warm red ground with muted blue"},
-  {c:"02_982",g:"Stapel 1",w:0.68,h:0.80,d:"Small-scale floral motifs, balanced symmetry"},
-  {c:"03_981",g:"Stapel 1",w:0.86,h:0.90,d:"Central medallion, structured geometric layout"},
-  {c:"04_992",g:"Stapel 1",w:0.70,h:0.89,d:"Ornamental field, deep red tones"},
-  {c:"05_960",g:"Stapel 1",w:0.78,h:0.80,d:"Traditional border design, symmetrical composition"},
-  {c:"06_802",g:"Stapel 1",w:0.95,h:0.65,d:"Calm floral pattern, elongated proportions"},
-  {c:"07_801",g:"Stapel 1",w:0.95,h:0.65,d:"Symmetrical allover design, restrained ornament"},
-  {c:"08_957",g:"Stapel 1",w:0.86,h:0.62,d:"Ornamental motifs, horizontal emphasis"},
-  {c:"09_889",g:"Stapel 1",w:0.79,h:0.55,d:"Compact floral field, red-dominant palette"},
+/* ================= STATE ================= */
+let products = [];
+let isAdmin = false;
+let activeFilter = "all";
+let currentImages = [];
+let imgIndex = 0;
+let currentCode = null;
+let currentProduct = null;
 
-  {c:"00_884",g:"Stapel 2",w:1.03,h:0.49,d:"Geometric field, long narrow format"},
-  {c:"01_844",g:"Stapel 2",w:0.60,h:0.55,d:"Small floral ornaments, dense texture"},
-  {c:"02_839",g:"Stapel 2",w:0.60,h:0.57,d:"Ornamental layout, balanced proportions"},
-  {c:"03_964",g:"Stapel 2",w:0.68,h:0.49,d:"Fine repeating motifs, horizontal emphasis"},
-  {c:"04_857",g:"Stapel 2",w:0.80,h:0.70,d:"Classic composition with central focus"},
-  {c:"05_843",g:"Stapel 2",w:0.80,h:0.53,d:"Border-dominated design, elongated shape"},
-  {c:"06_845",g:"Stapel 2",w:0.88,h:0.65,d:"Ornamental pattern, calm color balance"},
-  {c:"07_976",g:"Stapel 2",w:0.80,h:0.62,d:"Geometric motifs, structured field"},
-  {c:"08_987",g:"Stapel 2",w:0.74,h:0.63,d:"Ornamental design, even rhythm"},
-  {c:"09_985",g:"Stapel 2",w:0.67,h:0.80,d:"Allover pattern, square-oriented layout"},
-  {c:"10_986",g:"Stapel 2",w:0.83,h:0.60,d:"Symmetrical field, restrained ornament"},
-  {c:"11_855",g:"Stapel 2",w:0.78,h:0.70,d:"Floral elements, classic layout"},
-  {c:"12_975",g:"Stapel 2",w:0.77,h:0.62,d:"Diamond motifs, central emphasis"},
-  {c:"13_858",g:"Stapel 2",w:0.85,h:0.67,d:"Dense allover pattern, rich texture"},
-  {c:"14_846",g:"Stapel 2",w:0.78,h:0.70,d:"Traditional design, balanced symmetry"},
+const catalogEl = document.getElementById("catalog");
+const groupOrder = ["Stapel 1", "Stapel 2", "Gabbeh", "VK"];
+const groupIds = {"Stapel 1":"stapel-1","Stapel 2":"stapel-2","Gabbeh":"gabbeh","VK":"vk"};
 
-  {c:"31_499",g:"Gabbeh",w:1.44,h:1.12,d:"Reduced gabbeh design, earthy red tone"},
-  {c:"580",g:"Gabbeh",w:1.85,h:1.13,d:"Minimalist field, soft red\u2013orange palette"},
-  {c:"588",g:"Gabbeh",w:2.14,h:1.15,d:"Calm composition, warm orange-red tones"},
-  {c:"590",g:"Gabbeh",w:2.05,h:1.15,d:"Graphic stripes, red, orange and brown"},
-  {c:"591",g:"Gabbeh",w:1.95,h:1.12,d:"Harmonious color field, muted red"},
-  {c:"592",g:"Gabbeh",w:1.92,h:1.16,d:"Symmetrical gabbeh layout, warm red base"},
-  {c:"593",g:"Gabbeh",w:2.10,h:1.05,d:"Linear motifs, red field with darker lines"},
-  {c:"595",g:"Gabbeh",w:1.87,h:1.21,d:"Earth-toned palette, red-brown nuances"},
-  {c:"605",g:"Gabbeh",w:1.86,h:1.00,d:"Purist gabbeh style, restrained coloring"},
-
-  {c:"02_374",g:"VK",w:2.50,h:2.04,d:"Large floral pattern, red field with blue and ivory"},
-  {c:"03_433",g:"VK",w:1.49,h:1.07,d:"Ornamental design, warm red and beige"},
-  {c:"04_503",g:"VK",w:2.09,h:2.17,d:"Classic medallion layout, deep red ground"},
-  {c:"05_609",g:"VK",w:3.02,h:2.97,d:"Expansive pattern field, strong presence"},
-  {c:"06_610",g:"VK",w:3.07,h:2.53,d:"Traditional large-format carpet, rich ornament"},
-  {c:"07_668",g:"VK",w:2.55,h:1.60,d:"Geometric motifs, elongated layout"},
-  {c:"08_672",g:"VK",w:2.05,h:1.55,d:"Ornamental field, calm composition"},
-  {c:"09_709",g:"VK",w:2.23,h:2.18,d:"Central medallion, square proportions"},
-  {c:"10_717",g:"VK",w:2.35,h:1.55,d:"Classic layout, balanced ornament"},
-  {c:"11_721",g:"VK",w:3.58,h:2.67,d:"Large floral design, generous scale"},
-  {c:"12_722",g:"VK",w:3.80,h:2.50,d:"Ornamental composition, wide format"},
-  {c:"13_723",g:"VK",w:2.50,h:1.60,d:"Diamond motifs, rhythmic structure"},
-  {c:"14_724",g:"VK",w:4.05,h:3.10,d:"Very large floral carpet, dominant presence"},
-  {c:"15_725",g:"VK",w:4.03,h:3.10,d:"Classic large-format carpet, symmetrical layout"},
-  {c:"16_751",g:"VK",w:2.50,h:1.55,d:"Medallion-based design, clear structure"},
-  {c:"17_772",g:"VK",w:2.60,h:2.00,d:"Geometric pattern, square proportions"},
-  {c:"18_773",g:"VK",w:2.83,h:2.18,d:"Diamond pattern, bold rhythm"},
-  {c:"19_788",g:"VK",w:2.00,h:1.98,d:"Round medallion, compact square format"},
-  {c:"20_1170",g:"VK",w:3.12,h:2.18,d:"Bold pattern field, intense red tones"}
-];
-
-/* ================= ADMIN ================= */
-let isAdmin=false;
-function adminLogin(){
-  const pw=prompt("Enter admin password:");
-  if(pw===null)return;
-  if(pw==="admin123"){
-    isAdmin=true;
-    document.body.classList.add("admin-mode");
-    alert("Admin mode enabled. Click any rug to manage images and status.");
-  }else{
-    alert("Incorrect password.");
+/* ================= LOAD PRODUCTS ================= */
+async function loadProducts() {
+  try {
+    const res = await fetch("/api/products");
+    if (res.ok) {
+      products = await res.json();
+    }
+  } catch (e) {
+    console.error("Failed to load products:", e);
   }
+  document.getElementById("loadingOverlay").style.display = "none";
+  buildCatalog(activeFilter, "");
+  buildHero();
+  updateFilterCounts();
+}
+
+/* ================= FORMAT PRICE ================= */
+function formatPrice(p) {
+  if (!p || p <= 0) return null;
+  return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(p);
 }
 
 /* ================= BUILD CATALOG ================= */
-const catalogEl=document.getElementById("catalog");
-const groups=[...new Set(carpets.map(c=>c.g))];
-const groupIds={"Stapel 1":"stapel-1","Stapel 2":"stapel-2","Gabbeh":"gabbeh","VK":"vk"};
+function buildCatalog(filter, search) {
+  catalogEl.innerHTML = "";
+  const term = (search || "").toLowerCase().trim();
 
-function buildCatalog(filter,search){
-  catalogEl.innerHTML="";
-  const term=(search||"").toLowerCase().trim();
+  groupOrder.forEach(function(group) {
+    if (filter !== "all" && filter !== group) return;
 
-  groups.forEach(group=>{
-    if(filter!=="all"&&filter!==group)return;
-
-    const items=carpets.filter(c=>{
-      if(c.g!==group)return false;
-      if(term){
-        return c.c.toLowerCase().includes(term)||
-               c.d.toLowerCase().includes(term)||
-               (c.w+"").includes(term)||
-               (c.h+"").includes(term);
+    var items = products.filter(function(c) {
+      if (c.g !== group) return false;
+      if (term) {
+        return c.c.toLowerCase().includes(term) ||
+               c.d.toLowerCase().includes(term) ||
+               (c.w + "").includes(term) ||
+               (c.h + "").includes(term) ||
+               (formatPrice(c.p) || "").toLowerCase().includes(term);
       }
       return true;
     });
 
-    if(items.length===0)return;
+    if (items.length === 0) return;
 
-    const section=document.createElement("div");
-    section.id=groupIds[group]||group;
-    section.innerHTML='<div class="section-title" style="padding:0 32px;max-width:1400px;margin:0 auto">'+
-      group+'<span class="section-count">'+items.length+'</span></div>'+
-      '<div class="grid" style="padding:0 32px;max-width:1400px;margin:0 auto 40px"></div>';
+    var section = document.createElement("div");
+    section.id = groupIds[group] || group;
+    section.innerHTML = '<div class="section-title">' +
+      group + '<span class="section-count">' + items.length + '</span></div>' +
+      '<div class="grid"></div>';
 
-    const grid=section.querySelector(".grid");
+    var grid = section.querySelector(".grid");
 
-    items.forEach(c=>{
-      const card=document.createElement("div");
-      card.className="card";
-      card.id="card-"+c.c;
+    items.forEach(function(c) {
+      var card = document.createElement("div");
+      card.className = "card";
+      card.id = "card-" + c.c;
 
-      const sold=localStorage.getItem("sold-"+c.c)==="true";
-      if(sold)card.classList.add("sold");
+      if (c.sold) card.classList.add("sold");
 
-      const imgs=JSON.parse(localStorage.getItem("imgs-"+c.c)||"[]");
-      let thumbHTML;
-      if(imgs.length>0){
-        thumbHTML='<img class="thumb" src="'+imgs[0]+'" alt="Rug '+c.c+'" loading="lazy">';
-      }else{
-        thumbHTML='<div class="placeholder"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
+      var imgs = c.images || [];
+      var thumbHTML;
+      if (imgs.length > 0) {
+        thumbHTML = '<img class="thumb" src="' + imgs[0] + '" alt="Rug ' + c.c + '" loading="lazy">';
+      } else {
+        thumbHTML = '<div class="placeholder"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
       }
 
-      card.innerHTML=thumbHTML+
-        '<div class="card-body">'+
-        '<div class="code">'+c.c+'</div>'+
-        '<div class="size">'+c.w+' &times; '+c.h+' m</div>'+
-        '<div class="desc">'+c.d+'</div>'+
+      var soldBadge = c.sold ? '<div class="sold-badge">Sold</div>' : '';
+      var priceHTML = formatPrice(c.p)
+        ? '<div class="price-tag">' + formatPrice(c.p) + '</div>'
+        : '<div class="price-tag no-price">Price on request</div>';
+
+      card.innerHTML = soldBadge + thumbHTML +
+        '<div class="card-body">' +
+        '<div class="code">' + c.c + '</div>' +
+        '<div class="size">' + c.w + ' &times; ' + c.h + ' m</div>' +
+        '<div class="desc">' + c.d + '</div>' +
+        priceHTML +
         '</div>';
 
-      card.onclick=function(){openDetail(c)};
+      card.onclick = function() { openDetail(c); };
       grid.appendChild(card);
     });
 
     catalogEl.appendChild(section);
   });
+
+  if (catalogEl.children.length === 0) {
+    catalogEl.innerHTML = '<div class="empty-state">' +
+      '<svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>' +
+      '<p>No rugs found matching your search.</p></div>';
+  }
 }
 
-buildCatalog("all","");
+/* ================= UPDATE FILTER COUNTS ================= */
+function updateFilterCounts() {
+  var total = products.length;
+  document.getElementById("filterAll").textContent = "All (" + total + ")";
+}
 
 /* ================= FILTER + SEARCH ================= */
-let activeFilter="all";
-document.querySelectorAll(".filter-btn").forEach(function(btn){
-  btn.addEventListener("click",function(){
-    document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});
+document.querySelectorAll(".filter-btn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    document.querySelectorAll(".filter-btn").forEach(function(b) { b.classList.remove("active"); });
     btn.classList.add("active");
-    activeFilter=btn.dataset.filter;
-    buildCatalog(activeFilter,document.getElementById("searchBox").value);
+    activeFilter = btn.dataset.filter;
+    buildCatalog(activeFilter, document.getElementById("searchBox").value);
   });
 });
 
-document.getElementById("searchBox").addEventListener("input",function(){
-  buildCatalog(activeFilter,this.value);
+document.getElementById("searchBox").addEventListener("input", function() {
+  buildCatalog(activeFilter, this.value);
 });
 
 /* ================= DETAIL MODAL ================= */
-let currentImages=[];
-let imgIndex=0;
-let currentCode=null;
-let currentCarpet=null;
+function openDetail(c) {
+  currentProduct = c;
+  currentCode = c.c;
+  currentImages = c.images || [];
+  imgIndex = 0;
 
-function openDetail(c){
-  currentCarpet=c;
-  currentCode=c.c;
-  currentImages=JSON.parse(localStorage.getItem("imgs-"+c.c)||"[]");
-  imgIndex=0;
+  document.getElementById("detailCode").innerText = c.c;
+  document.getElementById("detailGroupText").innerText = c.g;
+  document.getElementById("detailSizeText").innerText = c.w + " \u00d7 " + c.h + " m";
+  document.getElementById("detailDesc").innerText = c.d;
 
-  document.getElementById("detailCode").innerText=c.c;
-  document.getElementById("detailSize").innerText=c.w+" \u00d7 "+c.h+" m \u2014 "+c.g;
-  document.getElementById("detailDesc").innerText=c.d;
+  var priceEl = document.getElementById("detailPriceDisplay");
+  var fp = formatPrice(c.p);
+  if (fp) {
+    priceEl.textContent = fp;
+    priceEl.className = "detail-price";
+  } else {
+    priceEl.textContent = "Price on request";
+    priceEl.className = "detail-price no-price";
+  }
 
   showImg();
 
-  document.getElementById("adminPanel").style.display=isAdmin?"block":"none";
-  document.getElementById("detail").style.display="block";
-  document.body.style.overflow="hidden";
+  // Admin panel
+  var adminPanel = document.getElementById("adminPanel");
+  if (isAdmin) {
+    adminPanel.style.display = "block";
+    document.getElementById("editCode").value = c.c;
+    document.getElementById("editGroup").value = c.g;
+    document.getElementById("editWidth").value = c.w;
+    document.getElementById("editHeight").value = c.h;
+    document.getElementById("editPrice").value = c.p || "";
+    document.getElementById("editSold").value = String(!!c.sold);
+    document.getElementById("editDesc").value = c.d;
+    buildImageThumbs();
+  } else {
+    adminPanel.style.display = "none";
+  }
+
+  document.getElementById("detail").style.display = "block";
+  document.body.style.overflow = "hidden";
 }
 
-function closeDetail(){
-  document.getElementById("detail").style.display="none";
-  document.body.style.overflow="";
+function closeDetail() {
+  document.getElementById("detail").style.display = "none";
+  document.body.style.overflow = "";
 }
 
-function showImg(){
-  var img=document.getElementById("detailImg");
-  var noImg=document.getElementById("noImage");
-  var counter=document.getElementById("imgCount");
-  var prevBtn=document.querySelector(".gallery-nav.prev");
-  var nextBtn=document.querySelector(".gallery-nav.next");
+function showImg() {
+  var img = document.getElementById("detailImg");
+  var noImg = document.getElementById("noImage");
+  var counter = document.getElementById("imgCount");
+  var prevBtn = document.querySelector(".gallery-nav.prev");
+  var nextBtn = document.querySelector(".gallery-nav.next");
 
-  if(currentImages.length>0){
-    img.src=currentImages[imgIndex];
-    img.style.display="block";
-    noImg.style.display="none";
-    counter.textContent=(imgIndex+1)+" / "+currentImages.length;
-    counter.style.display="block";
-    prevBtn.style.display=currentImages.length>1?"flex":"none";
-    nextBtn.style.display=currentImages.length>1?"flex":"none";
-  }else{
-    img.style.display="none";
-    noImg.style.display="block";
-    counter.style.display="none";
-    prevBtn.style.display="none";
-    nextBtn.style.display="none";
+  if (currentImages.length > 0) {
+    img.src = currentImages[imgIndex];
+    img.style.display = "block";
+    noImg.style.display = "none";
+    counter.textContent = (imgIndex + 1) + " / " + currentImages.length;
+    counter.style.display = "block";
+    prevBtn.style.display = currentImages.length > 1 ? "flex" : "none";
+    nextBtn.style.display = currentImages.length > 1 ? "flex" : "none";
+  } else {
+    img.style.display = "none";
+    noImg.style.display = "flex";
+    counter.style.display = "none";
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
   }
 }
 
-function nextImg(){
-  if(currentImages.length>1){
-    imgIndex=(imgIndex+1)%currentImages.length;
+function nextImg() {
+  if (currentImages.length > 1) {
+    imgIndex = (imgIndex + 1) % currentImages.length;
     showImg();
   }
 }
-function prevImg(){
-  if(currentImages.length>1){
-    imgIndex=(imgIndex-1+currentImages.length)%currentImages.length;
+function prevImg() {
+  if (currentImages.length > 1) {
+    imgIndex = (imgIndex - 1 + currentImages.length) % currentImages.length;
     showImg();
   }
 }
 
-/* close on Escape */
-document.addEventListener("keydown",function(e){
-  if(e.key==="Escape")closeDetail();
-  if(e.key==="ArrowRight")nextImg();
-  if(e.key==="ArrowLeft")prevImg();
+/* close on Escape, arrow keys for gallery */
+document.addEventListener("keydown", function(e) {
+  if (document.getElementById("detail").style.display === "block") {
+    if (e.key === "Escape") closeDetail();
+    if (e.key === "ArrowRight") nextImg();
+    if (e.key === "ArrowLeft") prevImg();
+  }
+  if (document.getElementById("adminLoginModal").classList.contains("active")) {
+    if (e.key === "Escape") closeAdminLogin();
+  }
 });
 
-/* ================= ADMIN ACTIONS ================= */
-function uploadImages(e){
-  var files=[].slice.call(e.target.files);
-  if(!files.length)return;
+/* ================= ADMIN LOGIN ================= */
+function showAdminLogin() {
+  if (isAdmin) {
+    logoutAdmin();
+    return;
+  }
+  document.getElementById("adminLoginModal").classList.add("active");
+  document.getElementById("adminPassword").value = "";
+  document.getElementById("loginError").style.display = "none";
+  setTimeout(function() { document.getElementById("adminPassword").focus(); }, 100);
+}
 
-  Promise.all(files.map(function(f){
-    return new Promise(function(resolve){
-      var r=new FileReader();
-      r.onload=function(){resolve(r.result)};
-      r.readAsDataURL(f);
+function closeAdminLogin() {
+  document.getElementById("adminLoginModal").classList.remove("active");
+}
+
+function doAdminLogin() {
+  var pw = document.getElementById("adminPassword").value;
+  if (pw === "admin123") {
+    isAdmin = true;
+    closeAdminLogin();
+    document.getElementById("adminStatusBar").classList.add("active");
+    document.getElementById("adminBtn").textContent = "Logout";
+    document.body.style.paddingTop = "";
+  } else {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("adminPassword").value = "";
+    document.getElementById("adminPassword").focus();
+  }
+}
+
+function logoutAdmin() {
+  isAdmin = false;
+  document.getElementById("adminStatusBar").classList.remove("active");
+  document.getElementById("adminBtn").textContent = "Admin";
+  document.getElementById("adminPanel").style.display = "none";
+}
+
+/* ================= ADMIN: SAVE PRODUCT ================= */
+async function saveProduct() {
+  if (!currentCode) return;
+
+  var updates = {
+    g: document.getElementById("editGroup").value,
+    w: parseFloat(document.getElementById("editWidth").value) || 0,
+    h: parseFloat(document.getElementById("editHeight").value) || 0,
+    p: parseFloat(document.getElementById("editPrice").value) || 0,
+    sold: document.getElementById("editSold").value === "true",
+    d: document.getElementById("editDesc").value
+  };
+
+  try {
+    var res = await fetch("/api/products", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: currentCode, updates: updates })
     });
-  })).then(function(imgs){
-    var existing=JSON.parse(localStorage.getItem("imgs-"+currentCode)||"[]");
-    var all=existing.concat(imgs);
-    localStorage.setItem("imgs-"+currentCode,JSON.stringify(all));
-    currentImages=all;
-    imgIndex=all.length-imgs.length;
-    showImg();
-    buildCatalog(activeFilter,document.getElementById("searchBox").value);
-    buildHero();
+
+    if (res.ok) {
+      var updated = await res.json();
+      // Update local state
+      var idx = products.findIndex(function(p) { return p.c === currentCode; });
+      if (idx !== -1) {
+        products[idx] = updated;
+        currentProduct = updated;
+      }
+      buildCatalog(activeFilter, document.getElementById("searchBox").value);
+      showSaveIndicator("Changes saved successfully");
+
+      // Update detail view
+      document.getElementById("detailCode").innerText = updated.c;
+      document.getElementById("detailGroupText").innerText = updated.g;
+      document.getElementById("detailSizeText").innerText = updated.w + " \u00d7 " + updated.h + " m";
+      document.getElementById("detailDesc").innerText = updated.d;
+      var priceEl = document.getElementById("detailPriceDisplay");
+      var fp = formatPrice(updated.p);
+      if (fp) {
+        priceEl.textContent = fp;
+        priceEl.className = "detail-price";
+      } else {
+        priceEl.textContent = "Price on request";
+        priceEl.className = "detail-price no-price";
+      }
+    }
+  } catch (e) {
+    console.error("Save failed:", e);
+    showSaveIndicator("Failed to save changes");
+  }
+}
+
+/* ================= ADMIN: IMAGE UPLOAD ================= */
+async function handleImageUpload(e) {
+  var files = e.target.files;
+  if (!files || files.length === 0 || !currentCode) return;
+
+  var formData = new FormData();
+  for (var i = 0; i < files.length; i++) {
+    formData.append("images", files[i]);
+  }
+
+  showSaveIndicator("Uploading images...");
+
+  try {
+    var res = await fetch("/api/upload?code=" + encodeURIComponent(currentCode), {
+      method: "POST",
+      body: formData
+    });
+
+    if (res.ok) {
+      var result = await res.json();
+      currentImages = result.images;
+
+      // Update local product state
+      var idx = products.findIndex(function(p) { return p.c === currentCode; });
+      if (idx !== -1) {
+        products[idx].images = result.images;
+      }
+
+      imgIndex = Math.max(0, currentImages.length - files.length);
+      showImg();
+      buildImageThumbs();
+      buildCatalog(activeFilter, document.getElementById("searchBox").value);
+      buildHero();
+      showSaveIndicator("Images uploaded successfully");
+    }
+  } catch (e) {
+    console.error("Upload failed:", e);
+    showSaveIndicator("Failed to upload images");
+  }
+
+  // Reset file input
+  e.target.value = "";
+}
+
+/* ================= ADMIN: DELETE IMAGE ================= */
+async function deleteImage(index) {
+  if (!currentCode) return;
+
+  try {
+    var res = await fetch("/api/delete-image", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: currentCode, index: index })
+    });
+
+    if (res.ok) {
+      var result = await res.json();
+      currentImages = result.images;
+
+      var idx = products.findIndex(function(p) { return p.c === currentCode; });
+      if (idx !== -1) {
+        products[idx].images = result.images;
+      }
+
+      if (imgIndex >= currentImages.length) imgIndex = Math.max(0, currentImages.length - 1);
+      showImg();
+      buildImageThumbs();
+      buildCatalog(activeFilter, document.getElementById("searchBox").value);
+      buildHero();
+      showSaveIndicator("Image removed");
+    }
+  } catch (e) {
+    console.error("Delete failed:", e);
+  }
+}
+
+async function clearAllImages() {
+  if (!currentCode) return;
+  if (!confirm("Remove all images for " + currentCode + "?")) return;
+
+  try {
+    var res = await fetch("/api/delete-image", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: currentCode, index: "all" })
+    });
+
+    if (res.ok) {
+      currentImages = [];
+      var idx = products.findIndex(function(p) { return p.c === currentCode; });
+      if (idx !== -1) {
+        products[idx].images = [];
+      }
+
+      imgIndex = 0;
+      showImg();
+      buildImageThumbs();
+      buildCatalog(activeFilter, document.getElementById("searchBox").value);
+      buildHero();
+      showSaveIndicator("All images cleared");
+    }
+  } catch (e) {
+    console.error("Clear failed:", e);
+  }
+}
+
+/* ================= BUILD IMAGE THUMBNAILS (Admin) ================= */
+function buildImageThumbs() {
+  var container = document.getElementById("imageThumbs");
+  container.innerHTML = "";
+  currentImages.forEach(function(src, i) {
+    var thumb = document.createElement("div");
+    thumb.className = "image-thumb";
+    thumb.innerHTML = '<img src="' + src + '" alt="Image ' + (i + 1) + '">' +
+      '<button class="remove-img" onclick="event.stopPropagation();deleteImage(' + i + ')" title="Remove image">&times;</button>';
+    container.appendChild(thumb);
   });
 }
 
-function deleteImages(){
-  if(!confirm("Remove all images for "+currentCode+"?"))return;
-  localStorage.removeItem("imgs-"+currentCode);
-  currentImages=[];
-  imgIndex=0;
-  showImg();
-  buildCatalog(activeFilter,document.getElementById("searchBox").value);
-  buildHero();
-}
-
-function toggleSold(){
-  var key="sold-"+currentCode;
-  var sold=localStorage.getItem(key)==="true";
-  localStorage.setItem(key,String(!sold));
-  var card=document.getElementById("card-"+currentCode);
-  if(card)card.classList.toggle("sold");
+/* ================= SAVE INDICATOR ================= */
+function showSaveIndicator(msg) {
+  var el = document.getElementById("saveIndicator");
+  el.textContent = msg;
+  el.classList.add("show");
+  setTimeout(function() { el.classList.remove("show"); }, 2500);
 }
 
 /* ================= HERO SLIDESHOW ================= */
-var heroSlides=document.querySelectorAll("#hero .slide");
-var heroIdx=0;
+var heroSlides = document.querySelectorAll("#hero .slide");
+var heroIdx = 0;
 
-function buildHero(){
-  var allImgs=[];
-  carpets.forEach(function(c){
-    var stored=JSON.parse(localStorage.getItem("imgs-"+c.c)||"[]");
-    if(stored.length)allImgs.push(stored[0]);
+function buildHero() {
+  var allImgs = [];
+  products.forEach(function(c) {
+    var imgs = c.images || [];
+    if (imgs.length) allImgs.push(imgs[0]);
   });
 
-  if(allImgs.length>0){
-    heroSlides.forEach(function(slide,i){
-      var src=allImgs[i%allImgs.length];
-      if(slide.tagName==="IMG"||slide.tagName==="DIV"){
-        if(slide.tagName==="DIV"){
-          var img=document.createElement("img");
-          img.className="slide"+(i===0?" active":"");
-          img.src=src;
-          img.alt="Featured rug";
-          slide.parentNode.replaceChild(img,slide);
-          heroSlides=document.querySelectorAll("#hero .slide");
-        }else{
-          slide.src=src;
-        }
+  if (allImgs.length > 0) {
+    heroSlides.forEach(function(slide, i) {
+      var src = allImgs[i % allImgs.length];
+      if (slide.tagName === "DIV") {
+        var img = document.createElement("img");
+        img.className = "slide" + (i === 0 ? " active" : "");
+        img.src = src;
+        img.alt = "Featured rug";
+        slide.parentNode.replaceChild(img, slide);
+        heroSlides = document.querySelectorAll("#hero .slide");
+      } else {
+        slide.src = src;
       }
     });
   }
 }
-buildHero();
 
-setInterval(function(){
-  heroSlides=document.querySelectorAll("#hero .slide");
-  if(heroSlides.length<2)return;
-  heroSlides.forEach(function(s){s.classList.remove("active")});
-  heroIdx=(heroIdx+1)%heroSlides.length;
+setInterval(function() {
+  heroSlides = document.querySelectorAll("#hero .slide");
+  if (heroSlides.length < 2) return;
+  heroSlides.forEach(function(s) { s.classList.remove("active"); });
+  heroIdx = (heroIdx + 1) % heroSlides.length;
   heroSlides[heroIdx].classList.add("active");
-},5000);
+}, 5000);
 
 /* ================= SCROLL TO TOP ================= */
-var scrollBtn=document.getElementById("scrollTop");
-window.addEventListener("scroll",function(){
-  if(window.scrollY>400){
-    scrollBtn.style.display="flex";
-  }else{
-    scrollBtn.style.display="none";
-  }
+var scrollBtn = document.getElementById("scrollTop");
+window.addEventListener("scroll", function() {
+  scrollBtn.style.display = window.scrollY > 400 ? "flex" : "none";
 });
+
+/* ================= INIT ================= */
+loadProducts();
 </script>
 
 </body>
